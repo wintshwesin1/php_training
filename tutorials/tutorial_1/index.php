@@ -37,26 +37,27 @@
     </style>
 </head>
 <body>
-  <div class="container">
-    <h3>Chess Board</h3>
-    <table>
-        <?php
+    <div class="container">
+        <h3>Chess Board</h3>
+        <table>
+            <?php
 
-          for($row=0 ; $row<8 ; $row++) {
-            echo "<tr>";
-            for($col=0 ; $col<8 ; $col++) {
-                $total=$row+$col;
-                if($total%2 == 0) {
-                    echo "<td class='td-white'></td>";
-                } else {
-                    echo "<td class='td-black'></td>";
+            $max = 8;
+            for($row = 0 ; $row < $max ; $row++) {
+                echo "<tr>";
+                for($col = 0 ; $col < $max ; $col++) {
+                    $total = $row + $col;
+                    if($total%2 == 0) {
+                        echo "<td class='td-white'></td>";
+                    } else {
+                        echo "<td class='td-black'></td>";
+                    }
                 }
+                echo "</tr>";
             }
-            echo "</tr>";
-          }
-        ?>
-    </table>
-  </div>
+            ?>
+        </table>
+    </div>
   
 </body>
 </html>

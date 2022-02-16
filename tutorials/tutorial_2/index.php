@@ -24,20 +24,21 @@
     </style>
 </head>
 <body>
-  <div class="container">
+    <div class="container">
     <h3>Star</h3>
         <?php
 
-            for($col=0 ; $col<=10 ; $col+=2) {
+            $max = 10;
+            for($col = 0 ; $col <= $max ; $col+=2) {
                 for($star=0 ; $star <= $col ; $star++) {
                     echo "<span>* <span>";
                 }
                 echo "<br>";
             }
 
-            $count=9;
-            for($col=10 ; $col>=0 ; $col-=2) {
-                for($starr=$count ; $starr > 0 ; $starr--) {
+            $count = 9;
+            for($col = $max ; $col >= 0 ; $col-=2) {
+                for($starr = $count ; $starr > 0 ; $starr--) {
                     echo "<span>* <span>";
                 }
                 echo "<br>";
@@ -45,7 +46,7 @@
             }
 
         ?>
-  </div>
+    </div>
   
 </body>
 </html>
