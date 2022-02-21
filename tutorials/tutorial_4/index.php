@@ -1,13 +1,13 @@
 <?php
 
     session_start();
-    if(isset($_POST['submit'])) {
+    if (isset($_POST['submit'])) {
         $message="";
         $_SESSION["username"] = $_POST['username'];
         $_SESSION["pw"] = $_POST['password'];
-        if($_SESSION["username"] == 'admin' and $_SESSION["pw"] == 'admin123') {
+        if ($_SESSION["username"] == 'admin' and $_SESSION["pw"] == 'admin123') {
             header("Location:login.php");
-        }else {
+        } else {
             $message = "Invalid Username or Password!";
         }
     }
