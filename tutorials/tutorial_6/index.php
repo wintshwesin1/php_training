@@ -1,13 +1,30 @@
 <?php
+
 	if(isset($_POST['submit'])){
         $image=$_FILES['myfile'];
         $fname=$_POST['foldername'];
         $target_path_pdf = "profile/$fname/";
 
-        if(!is_dir($target_path_pdf)){
-            mkdir($target_path_pdf);
+        $allowed = array('png', 'jpg', 'jpeg', 'svg');
+        $filename = $_FILES['myfile']['name'];
+       
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        if (in_array($ext, $allowed)) {
+            if(!is_dir($target_path_pdf)) {
+                mkdir($target_path_pdf);
+            }
+            
+            $file_extension = $target_path_pdf.$image['name'];
+            
+            if (file_exists($file_extension)) {
+                $error ="Image already exists.";
+            } else {
+                move_uploaded_file($image['tmp_name'],$target_path_pdf.$image['name']);
+                $message ="Image uploaded successfully.";
+            } 
+        } else {
+            $error ="File type not allowed.";
         }
-        move_uploaded_file($image['tmp_name'],$target_path_pdf.$image['name']);
     }
 ?>
 
@@ -26,7 +43,7 @@
 
         .container {
             width:400px;
-            margin:180px auto;
+            margin:130px auto;
             padding:20px;
             border:2px solid #33333390;
             border-radius:5px;
@@ -72,18 +89,42 @@
             border-radius:5px;
         }
 
+        .message ,
+        .error {
+            color : #fff;
+            padding :10px;
+            border-radius:5px;
+        }
+
+        .message {
+            background-color : #89d59a;
+        }
+
+        .error {
+            background-color : #e37781;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <form action="" method="post" enctype="multipart/form-data">
+            <?php 
+                if(!empty($message)){
+                        echo "<div class='message'>".$message."</div><br>";
+                }  
+                if(!empty($error)){
+                    echo "<div class='error'>".$error."</div><br>";
+                }   
+            ?>
+
             <label for="myfile">UploadImage : </label><br/>
             <div class="chooseimage">
                 <input type="file" name="myfile" class="choose">
             </div><br/>
 
             <label for="foldername">FolderName : </label><br/>
-            <input type="text" name="foldername" class="foldername"><br/>
+            <input type="text" name="foldername" class="foldername" required><br/>
             <input type="submit" value="upload" name='submit' class="btn">
         </form>
     </div>
