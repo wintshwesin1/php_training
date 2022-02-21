@@ -56,7 +56,7 @@ if(isset($_POST['generate'])){
 <div class="container">
     <h1>Creating QR Codes in PHP</h1>
     <form action="" method="post">
-        <input type="text" name="text">
+        <input type="text" name="text" required>
         <br>
         <input type="submit" name="generate" value="Generate" class="btn">
     </form>
