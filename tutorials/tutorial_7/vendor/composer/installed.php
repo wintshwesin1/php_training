@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => NULL,
+        'name' => '__root__',
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => NULL,
+            'dev_requirement' => false,
+        ),
+        'chillerlan/php-qrcode' => array(
+            'pretty_version' => '2.0.8',
+            'version' => '2.0.8.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../chillerlan/php-qrcode',
+            'aliases' => array(),
+            'reference' => 'bf0382aaf2f79fa41c2dcb0f216675f74d633fe7',
+            'dev_requirement' => false,
+        ),
+        'chillerlan/php-traits' => array(
+            'pretty_version' => '1.1.13',
+            'version' => '1.1.13.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../chillerlan/php-traits',
+            'aliases' => array(),
+            'reference' => '264759946b6aaeb427346b749fc9639b790b8e7f',
+            'dev_requirement' => false,
+        ),
+    ),
+);
