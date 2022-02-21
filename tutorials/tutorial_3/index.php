@@ -1,8 +1,13 @@
 <?php 
     if(isset($_POST['submit'])) {
         $birthDate = $_POST['date-of-birth'];
-        $currentDate = date("d-m-Y");
-        $age = date_diff(date_create($birthDate), date_create($currentDate))->format("%y");
+        $currentDate = date("Y-m-d");
+        if ($birthDate > $currentDate) {
+            $message = "That person is not yet born.";
+        }else{
+            $age = date_diff(date_create($birthDate), date_create($currentDate))->format("%y");
+        }
+        
     }
 ?>
 
@@ -69,7 +74,8 @@
             <input class="date form-input" type="text" name="date-of-birth" autocomplete="off" required>
             <input type="submit" name="submit" value="Calculate" class="calculatebtn">
         </form>
-        <div class="showresult"><?php if(!empty($age)){ echo "Age is : " .$age."years"; } ?></div>
+        <div class="showresult"><?php if(!empty($age)){ echo "Age is : " .$age."years"; } 
+                                      if(!empty($message)){ echo $message; }?></div>
         
     </div>
 
