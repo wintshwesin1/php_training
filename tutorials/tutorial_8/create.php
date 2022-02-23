@@ -31,7 +31,7 @@
         if (count((array)$errors) == 0) {
             $password =  md5($_POST['password']);
         
-            mysqli_query($db,"UPDATE user SET name='$username', email='$email',password='$password' WHERE id=$id");
+            mysqli_query($db,"UPDATE user SET name='$username', email='$email',password='$password',updated_at=NOW() WHERE id=$id");
             $_SESSION['message'] = "Data updated successful!"; 
             header('location: index.php');
         }
