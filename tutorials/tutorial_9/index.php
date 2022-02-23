@@ -1,7 +1,8 @@
 <?php
 
     require 'config.php';
-    $sql ="SELECT count(id) as uid,DATE_FORMAT(created_at, '%Y-%m-%d') as date FROM auth.user GROUP BY DATE_FORMAT(created_at, '%Y-%m-%d')";
+    $sql ="SELECT count(id) as uid,DATE_FORMAT(created_at, '%Y-%m-%d') as date FROM user 
+           GROUP BY DATE_FORMAT(created_at, '%Y-%m-%d')";
     $result = mysqli_query($db,$sql);
     $chart_data="";
     while ($row = mysqli_fetch_array($result)) { 
@@ -19,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial 9</title>
 
-    <style type="text/css">
+    <style>
         body {
             width: 600px;
             margin: 50px auto;
@@ -33,9 +34,10 @@
             width: 100%;
             height: auto;
         }
-</style>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/Chart.min.js"></script>
+
+    </style>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/Chart.min.js"></script>
 </head>
 <body>
 
