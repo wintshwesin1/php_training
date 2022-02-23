@@ -28,7 +28,7 @@
             <?php  } ?>
 
             <div class="clearfix">
-                <h2 class="ft-left">User Details</h2>
+                <h1 class="ft-left">User Details</h1>
                 <a href="create.php" class="btn ft-right"><i class="fa fa-plus"></i> Add New User</a>
             </div>
 

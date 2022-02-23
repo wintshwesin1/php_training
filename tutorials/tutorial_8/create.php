@@ -47,12 +47,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial 8</title>
  
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
     <div class="container">
-        <form action="create.php" method="post">
+        <form action="" method="post">
+            <h1><?php if(isset($_GET['id'])){ echo "Update User"; }
+                      else { echo "Create User"; } ?></h1>
             <?php include('errors.php'); ?>
             <div class="input-group">
                 <label for="username">Username</label>
@@ -66,7 +68,7 @@
 
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="text" name="password" class="input" required>
+                <input type="password" name="password" class="input" required>
             </div>
 
             <div class="input-group">

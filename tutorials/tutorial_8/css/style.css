@@ -13,6 +13,10 @@ a {
   display: inline-block;
 }
 
+h1 {
+  color: #33333390;
+}
+
 .clearfix::after {
   content: "";
   clear: both;
@@ -51,7 +55,7 @@ a {
 form,
 .content {
   width: 35%;
-  margin: 100px auto;
+  margin: 80px auto;
   padding: 20px;
   border: 1px solid #B0C4DE;
   background: white;
