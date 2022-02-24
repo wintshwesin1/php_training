@@ -36,8 +36,12 @@ if (isset($_POST['add'])) {
         $query = "INSERT INTO user (name, email, password) 
                    VALUES('$username', '$email', '$password')";
         mysqli_query($db, $query);
-        $_SESSION['username'] = $username;
-        $_SESSION['message'] = "Data created successful!";
-        header('location: index.php');
+        if(isset($_SESSION['username'])) {
+            $_SESSION['message'] = "User created successful!";
+            header('location: show.php');
+        } else {
+            $message = "User created successful!";
+        }
+
     }
 }

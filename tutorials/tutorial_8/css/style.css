@@ -14,7 +14,7 @@ a {
 }
 
 h1 {
-  color: #33333390;
+  color: #F8F8FF;
 }
 
 .clearfix::after {
@@ -36,8 +36,22 @@ h1 {
 
 .container-fluid {
   width: 70%;
-  margin: 50px auto;
+  margin: 80px auto;
 
+}
+
+nav {
+  background-color: #5F9EA0;
+  padding: 15px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  text-align: right;
+}
+
+.menu a {
+  color: #F8F8FF;
+  font-size: 20px;
 }
 
 .header {
@@ -55,11 +69,17 @@ h1 {
 form,
 .content {
   width: 35%;
-  margin: 80px auto;
+  margin: 100px auto;
   padding: 20px;
   border: 1px solid #B0C4DE;
   background: white;
   border-radius: 5px;
+}
+
+.form-ttl {
+  text-align: center;
+  font-size: 30px;
+  color: #00000090;
 }
 
 .input-group {
@@ -89,6 +109,7 @@ form,
   border: none;
   border-radius: 5px;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 .btn-secondary {
@@ -97,6 +118,23 @@ form,
   border: 1px solid #33333390;
   border-radius: 5px;
   color: #000;
+  cursor: pointer;
+}
+
+.btn-log {
+  width: 100%;
+  margin-top: 0px;
+  cursor: pointer;
+}
+
+.btn-reset {
+  font-size: 18px;
+  cursor: pointer;
+
+}
+
+.already {
+  text-align: center;
 }
 
 .error {
