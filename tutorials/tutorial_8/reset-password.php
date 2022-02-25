@@ -8,6 +8,7 @@
 
     if ($_POST) {
     
+        $url = 'http://localhost:8080/BIB%20PHP%20Tutorials/tutorials/tutorial_8/forgot-password.php';
         $email = $_POST['email'];
         $errors = array(); 
 
@@ -19,6 +20,13 @@
         if($count == 1){  
             $email = $row['email'];
             $pwd = $row['password'];
+
+            $token = md5($email).rand(10,9999);
+            $expFormat = mktime(
+            date("H"), date("i"), date("s"), date("m") ,date("d")+1, date("Y")
+            );
+            $expDate = date("Y-m-d H:i:s",$expFormat);
+            $update = mysqli_query($db,"UPDATE user set reset_link_token='" . $token . "' ,exp_date='" . $expDate . "' WHERE email='" . $email . "'");
            
             $mail = new PHPMailer(true);
  
@@ -36,8 +44,8 @@
                 $mail->addAddress($email);
 
                 $message = "<p>Please click the link below to reset your password</p>";
-                $message .= "<a href='http://localhost:8080/BIB%20PHP%20Tutorials/tutorials/tutorial_8/forgot-password.php?email=$email'>";
-                $message .= "Reset password";
+                $message .= "<a href='$url?email=$email&token=$token'>";
+                $message .= "$url?email=$email&token=$token";
                 $message .= "</a>";
             
                 

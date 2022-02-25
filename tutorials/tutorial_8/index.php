@@ -42,6 +42,7 @@
         <form action="" method="post">
             <h1 class="form-ttl">Login Form</h1>
             <?php include('errors.php'); ?>
+            
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" name="username" class="input" value="<?php if(isset($_GET['id'])){ echo $name; }?>" required>
