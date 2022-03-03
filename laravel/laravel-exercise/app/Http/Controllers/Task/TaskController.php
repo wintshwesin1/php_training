@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Task;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Contracts\Services\Task\TaskServiceInterface;
+use App\Http\Requests\TaskCreateRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * This is Task controller.
+ * This handles Task CRUD processing.
+ */
 class TaskController extends Controller
 {
     /**
-     * post interface
+     * task interface
     */
     private $taskInterface;
 
@@ -25,9 +30,9 @@ class TaskController extends Controller
     }
 
     /**
-     * To show create post view
+     * To show create task view
      * 
-     * @return View create post
+     * @return View create task
     */
     public function showTaskCreateView()
     {
@@ -36,16 +41,13 @@ class TaskController extends Controller
     }
 
     /**
-     * To check post create form and redirect to confirm page.
-     * @param PostCreateRequest $request Request form post create
-     * @return View post create confirm
+     * To check task create form and redirect to create page.
+     * @param TaskCreateRequest $request Request form task create
+     * @return View task create 
      */
-    public function submitTaskCreateView(Request $request)
+    public function submitTaskCreateView(TaskCreateRequest $request)
     {
-        // validation for request values
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-        ]);
+        $validator = Validator::make($request->all(),[$request]);
 
         if ($validator->fails()) {
             return redirect('/task')
@@ -53,13 +55,13 @@ class TaskController extends Controller
                 ->withErrors($validator);
         }
 
-        $post = $this->taskInterface->saveTask($request);
+        $task = $this->taskInterface->saveTask($request);
         return redirect()->route('create.task');
     }
 
     /**
-     * To delete post by id
-     * @return View post list
+     * To delete task by id
+     * @return View task list
      */
     public function deleteTaskById($taskId)
     {

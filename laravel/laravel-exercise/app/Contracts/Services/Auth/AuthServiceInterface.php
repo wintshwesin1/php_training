@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 interface AuthServiceInterface
 {
   
-  public function saveUser(Request $request);
+    /**
+     * To Save user with values from request
+     * @param Request $request request including inputs
+     * @return Object user
+     */
+    public function saveUser(Request $request);
 
 }

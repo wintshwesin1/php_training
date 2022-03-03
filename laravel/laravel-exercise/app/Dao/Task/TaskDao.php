@@ -25,7 +25,6 @@ class TaskDao implements TaskDaoInterface
         $task->save();
         
         return $task;
-        //return view('tasks');
     }
 
     /**

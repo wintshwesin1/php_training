@@ -15,6 +15,10 @@ use Hash;
 class ForgotPasswordDao implements ForgotPasswordDaoInterface
 {
   
+    /**
+     * To save passwordreset
+     * @param Request $request request with inputs
+    */
     public function savePasswordReset(Request $request,$token)
     {
         DB::table('password_resets')->insert([
@@ -29,6 +33,10 @@ class ForgotPasswordDao implements ForgotPasswordDaoInterface
         });
     }
 
+    /**
+     * To update password
+     * @param Request $request request with inputs
+    */
     public function updatePassword(Request $request)
     {
         $updatePassword = DB::table('password_resets')
