@@ -4,6 +4,8 @@
     <div class="col-lg-12 margin-tb">
       <div class="pull-right">
         <a class="btn btn-success" href="{{ route('student.create') }}"> Create Student</a>
+        <a class="btn btn-success" href="{{ route('file-export') }}"> Export Data</a>
+        <a class="btn btn-success" href="{{ route('file-import-export') }}"> Import</a>
       </div><br>
     </div>
   </div>

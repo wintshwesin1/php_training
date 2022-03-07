@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contracts\Services\Student\StudentServiceInterface;
 use App\Http\Requests\StudentCreateRequest;
+use App\Http\Requests\StudentEditRequest;
 use App\Models\Student;
 use App\Models\Major;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\StudentsImport;
+use App\Exports\StudentsExport;
 
 class StudentController extends Controller
 {
@@ -77,7 +81,7 @@ class StudentController extends Controller
      * @param $studentId
      * @return View student list
      */
-    public function submitStudentEditView(StudentCreateRequest $request, $studentId)
+    public function submitStudentEditView(StudentEditRequest $request, $studentId)
     {
         $request->validated();
         $student = $this->studentInterface->updatedStudentById($request,$studentId);
@@ -92,5 +96,31 @@ class StudentController extends Controller
     {
         $msg = $this->studentInterface->deleteStudentById($studentId);
         return redirect()->route('students')->with('success',$msg);
+    }
+
+    /**
+     * @return View import view
+     */
+    public function fileImportExportView()
+    {
+       return view('students.file-import');
+    }
+   
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function fileExport() 
+    {
+        return Excel::download(new StudentsExport, 'students.csv');
+    }
+   
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function fileImport() 
+    {
+        Excel::import(new StudentsImport,request()->file('file'));
+           
+        return redirect()->route('students')->with('success','Import data successfully');
     }
 }

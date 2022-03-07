@@ -26,3 +26,8 @@ Route::post('/student/store', 'StudentController@submitStudentCreateView')->name
 Route::get('/student/edit/{studentId}', 'StudentController@showStudentEdit')->name('student.edit');
 Route::post('/student/edit/{studentId}', 'StudentController@submitStudentEditView')->name('student.update');
 Route::delete('/student/delete/{studentId}', 'StudentController@deleteStudentById')->name('student.destroy');
+
+
+Route::get('/file-import-export', 'StudentController@fileImportExportView')->name('file-import-export');
+Route::post('/file-import', 'StudentController@fileImport')->name('file-import');
+Route::get('/file-export', 'StudentController@fileExport')->name('file-export');
