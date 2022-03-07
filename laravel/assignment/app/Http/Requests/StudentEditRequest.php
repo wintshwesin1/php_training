@@ -26,8 +26,8 @@ class StudentEditRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'major' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'phone' => ['min:11','numeric'],
+            'email' => ['required', 'string', 'max:255','unique:students,email,'.$this->studentId],
+            'phone' => ['required', 'numeric', 'digits:11'],
             'address' => ['max:255'],
         ];
     }

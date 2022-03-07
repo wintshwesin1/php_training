@@ -4,7 +4,11 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="panel-heading">
+              @if (isset($student))
+                <h2>Update Student</h2>
+                @else
                 <h2>Create Student</h2>
+              @endif
             </div>
         </div>
     </div>

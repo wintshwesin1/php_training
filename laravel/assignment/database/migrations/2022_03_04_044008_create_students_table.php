@@ -17,9 +17,9 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('name',100);
             $table->unsignedInteger('major_id')->nullable();
-            $table->biginteger('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->unique()->nullable();
-            $table->text('address')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', 0);
 

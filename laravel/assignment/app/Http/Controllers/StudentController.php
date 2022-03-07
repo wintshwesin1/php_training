@@ -52,8 +52,8 @@ class StudentController extends Controller
     }
 
     /**
-     * To submit student create confirm view
-     * @param Request $request
+     * To submit student create view
+     * @param StudentCreateRequest $request
      * @return View student list
      */
     public function submitStudentCreateView(StudentCreateRequest $request)
@@ -65,7 +65,7 @@ class StudentController extends Controller
     
     /**
      * Show student edit
-     * 
+     * @param $studentId
      * @return View student edit
      */
     public function showStudentEdit($studentId)
@@ -77,7 +77,7 @@ class StudentController extends Controller
 
     /**
      * Submit student edit
-     * @param Request $request
+     * @param StudentEditRequest $request
      * @param $studentId
      * @return View student list
      */
@@ -90,6 +90,7 @@ class StudentController extends Controller
 
     /**
      * To delete student by id
+     * @param $studentId
      * @return View student list
      */
     public function deleteStudentById($studentId)
@@ -115,12 +116,11 @@ class StudentController extends Controller
     }
    
     /**
-     * @return \Illuminate\Support\Collection
+     * @return View student lists
      */
     public function fileImport() 
     {
         Excel::import(new StudentsImport,request()->file('file'));
-           
         return redirect()->route('students')->with('success','Import data successfully');
     }
 }

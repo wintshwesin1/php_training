@@ -27,7 +27,7 @@ class StudentCreateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'major' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255','unique:students'],
-            'phone' => ['min:11','numeric'],
+            'phone' => ['required', 'numeric', 'digits:11'],
             'address' => ['max:255'],
         ];
     }

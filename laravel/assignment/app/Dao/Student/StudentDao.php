@@ -33,7 +33,7 @@ class StudentDao implements StudentDaoInterface
 
     /**
      * To get student list
-     * @return array $studentList Student list
+     * @return array $students Student list
      */
     public function getStudentList()
     {
