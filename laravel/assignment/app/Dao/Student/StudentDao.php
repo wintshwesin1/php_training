@@ -99,15 +99,17 @@ class StudentDao implements StudentDaoInterface
     public function getSearchStudentInfo(Request $request)
     {
         $search = $request->get('search');		
-        $students = Student::query()
+        $students = DB::table('students')
                     ->selectRaw('students.id,students.name as name,majors.name as majorname,students.email,students.phone,students.address')
                     ->join('majors','majors.id','=','students.major_id')
-                    ->where ( 'students.name', 'LIKE', '%' . $search . '%' )
-                    ->orWhere ( 'students.id', 'LIKE', '%' . $search . '%' )
-                    ->orWhere ( 'majors.name', 'LIKE', '%' . $search . '%' )
-                    ->orWhere ( 'students.email', 'LIKE', '%' . $search . '%' )
-                    ->orWhere ( 'students.phone', 'LIKE', '%' . $search . '%' )
-                    ->orWhere ( 'students.address', 'LIKE', '%' . $search . '%' )
+                    ->where(function($query) use ($search){
+                        $query->where ( 'students.name', 'LIKE', '%' . $search . '%' )
+                              ->orWhere ( 'majors.name', 'LIKE', '%' . $search . '%' )
+                              ->orWhere ( 'students.email', 'LIKE', '%' . $search . '%' )
+                              ->orWhere ( 'students.phone', 'LIKE', '%' . $search . '%' )
+                              ->orWhere ( 'students.address', 'LIKE', '%' . $search . '%' );
+                    })
+                    ->whereNull('students.deleted_at')
                     ->paginate(10);
         return $students;
     }

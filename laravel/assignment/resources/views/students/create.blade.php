@@ -54,7 +54,7 @@
         <div class="col-xs-6 col-sm-6 col-md-6">
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('name', isset($student) ? $student->email : '') }}">
+            <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email', isset($student) ? $student->email : '') }}">
           </div>
         </div>
       </div>
