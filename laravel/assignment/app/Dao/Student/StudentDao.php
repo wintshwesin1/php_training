@@ -39,7 +39,8 @@ class StudentDao implements StudentDaoInterface
     {
         $students = DB::table('students')
                     ->selectRaw('students.id,students.name as name,majors.name as majorname,students.email,students.phone,students.address')
-                    ->join('majors','majors.id','=','students.major_id')->paginate(10);
+                    ->join('majors','majors.id','=','students.major_id')
+                    ->whereNull('students.deleted_at')->paginate(10);
         return $students;
     }
 
@@ -98,7 +99,7 @@ class StudentDao implements StudentDaoInterface
     public function getSearchStudentInfo(Request $request)
     {
         $search = $request->get('search');		
-        $students = DB::table('students')
+        $students = Student::query()
                     ->selectRaw('students.id,students.name as name,majors.name as majorname,students.email,students.phone,students.address')
                     ->join('majors','majors.id','=','students.major_id')
                     ->where ( 'students.name', 'LIKE', '%' . $search . '%' )
@@ -106,8 +107,8 @@ class StudentDao implements StudentDaoInterface
                     ->orWhere ( 'majors.name', 'LIKE', '%' . $search . '%' )
                     ->orWhere ( 'students.email', 'LIKE', '%' . $search . '%' )
                     ->orWhere ( 'students.phone', 'LIKE', '%' . $search . '%' )
-                    ->orWhere ( 'students.address', 'LIKE', '%' . $search . '%' )->paginate(10);
-        
+                    ->orWhere ( 'students.address', 'LIKE', '%' . $search . '%' )
+                    ->paginate(10);
         return $students;
     }
 
