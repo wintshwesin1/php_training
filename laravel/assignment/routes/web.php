@@ -31,3 +31,5 @@ Route::delete('/student/delete/{studentId}', 'StudentController@deleteStudentByI
 Route::get('/file-import-export', 'StudentController@fileImportExportView')->name('file-import-export');
 Route::post('/file-import', 'StudentController@fileImport')->name('file-import');
 Route::get('/file-export', 'StudentController@fileExport')->name('file-export');
+
+Route::post('/', 'StudentController@findSearch')->name('search');

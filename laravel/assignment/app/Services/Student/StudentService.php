@@ -77,4 +77,14 @@ class StudentService implements StudentServiceInterface
     {
         return $this->studentDao->updatedStudentById($request, $id);
     }
+
+    /**
+     * To get student data with inputs
+     * @param Request $request request with inputs
+     * @return Object $student Student Object
+     */
+    public function getSearchStudentInfo(Request $request)
+    {
+        return $this->studentDao->getSearchStudentInfo($request);
+    }
 }

@@ -15,6 +15,12 @@
       padding: 5px;
       margin-top: 20px;
     }
+
+    .msgborder {
+      border: none !important;
+      font-weight: bold;
+
+    }
   </style>
 <body>
   

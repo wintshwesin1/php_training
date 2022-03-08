@@ -43,4 +43,11 @@ interface StudentDaoInterface
      * @return Object $student student Object
      */
     public function updatedStudentById(Request $request, $id);
+
+    /**
+     * To get student data with inputs
+     * @param Request $request request with inputs
+     * @return array $studentList Student list
+     */
+    public function getSearchStudentInfo(Request $request);
 }

@@ -37,7 +37,9 @@ class StudentDao implements StudentDaoInterface
      */
     public function getStudentList()
     {
-        $students = Student::with('major')->latest()->paginate(10);
+        $students = DB::table('students')
+                    ->selectRaw('students.id,students.name as name,majors.name as majorname,students.email,students.phone,students.address')
+                    ->join('majors','majors.id','=','students.major_id')->paginate(10);
         return $students;
     }
 
@@ -86,6 +88,27 @@ class StudentDao implements StudentDaoInterface
         $student->updated_at = Carbon::now()->timestamp;
         $student->save();
         return $student;
+    }
+
+    /**
+     * To search student data with inputs
+     * @param Request $request request with inputs
+     * @return Object $student Student Object
+     */
+    public function getSearchStudentInfo(Request $request)
+    {
+        $search = $request->get('search');		
+        $students = DB::table('students')
+                    ->selectRaw('students.id,students.name as name,majors.name as majorname,students.email,students.phone,students.address')
+                    ->join('majors','majors.id','=','students.major_id')
+                    ->where ( 'students.name', 'LIKE', '%' . $search . '%' )
+                    ->orWhere ( 'students.id', 'LIKE', '%' . $search . '%' )
+                    ->orWhere ( 'majors.name', 'LIKE', '%' . $search . '%' )
+                    ->orWhere ( 'students.email', 'LIKE', '%' . $search . '%' )
+                    ->orWhere ( 'students.phone', 'LIKE', '%' . $search . '%' )
+                    ->orWhere ( 'students.address', 'LIKE', '%' . $search . '%' )->paginate(10);
+        
+        return $students;
     }
 
 }

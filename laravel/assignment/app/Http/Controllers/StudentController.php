@@ -11,6 +11,7 @@ use App\Models\Major;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\StudentsImport;
 use App\Exports\StudentsExport;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -122,5 +123,16 @@ class StudentController extends Controller
     {
         Excel::import(new StudentsImport,request()->file('file'));
         return redirect()->route('students')->with('success','Import data successfully');
+    }
+
+    /**
+     * Search student data
+     * @param Request $request
+     * @return View student list
+     */
+    public function findSearch(Request $request)
+    {	
+        $students = $this->studentInterface->getSearchStudentInfo($request);
+        return view('students.index' ,compact('students'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }
