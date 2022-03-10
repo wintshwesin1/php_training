@@ -40,7 +40,7 @@ class StudentDao implements StudentDaoInterface
         $students = DB::table('students')
                     ->selectRaw('students.id,students.name as name,majors.name as majorname,students.email,students.phone,students.address')
                     ->join('majors','majors.id','=','students.major_id')
-                    ->whereNull('students.deleted_at')->paginate(10);
+                    ->whereNull('students.deleted_at')->orderBy('id', 'DESC')->paginate(10);
         return $students;
     }
 

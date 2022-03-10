@@ -36,8 +36,8 @@ class StudentController extends Controller
      */
     public function showStudentList()
     {
-        $data = Student::get();
-        return response()->json([StudentResource::collection($data), 'Students fetched.']);
+        $data = Student::with('major')->orderBy('id', 'DESC')->get();
+        return response()->json([StudentResource::collection($data)]);
     }
 
     /**
@@ -49,7 +49,7 @@ class StudentController extends Controller
     {
         $request->validated();
         $student = $this->studentInterface->saveStudent($request);
-        return response()->json(['Student created successfully.', new StudentResource($student)]);
+        return response()->json(['success'=>'Student created successfully.', new StudentResource($student)]);
     }
 
     /**
@@ -76,7 +76,7 @@ class StudentController extends Controller
     {
         $request->validated();
         $student = $this->studentInterface->updatedStudentById($request,$studentId);
-        return response()->json(['Student updated successfully.', new StudentResource($student)]);
+        return response()->json(['success'=>'Student updated successfully.', new StudentResource($student)]);
     }
 
     /**

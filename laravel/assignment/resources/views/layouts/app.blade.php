@@ -3,6 +3,7 @@
   <head>
     <title>Laravel 8 CRUD Operation Tutorial for Beginners</title>
     <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('asset/js/library/jquery.min.js') }}"></script>
   </head>
   <style>
     .container {
@@ -25,8 +26,8 @@
 <body>
   
 <div class="container">
-  
   @yield('content')
 </div>
+  @yield('scripts')
 </body>
 </html>
