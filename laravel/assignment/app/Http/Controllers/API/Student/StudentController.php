@@ -86,7 +86,10 @@ class StudentController extends Controller
      */
     public function deleteStudentById($studentId)
     {
-        $msg = $this->studentInterface->deleteStudentById($studentId);
-        return response()->json($msg);
+        $student = $this->studentInterface->deleteStudentById($studentId);
+        if (is_null($student)) {
+            return response()->json('Student not found', 404); 
+        }
+        return response()->json(['success'=>'Student deleted successfully.']);
     }
 }

@@ -97,7 +97,7 @@ class StudentController extends Controller
     public function deleteStudentById($studentId)
     {
         $msg = $this->studentInterface->deleteStudentById($studentId);
-        return redirect()->route('students')->with('success',$msg);
+        return redirect()->route('students')->with('success','Student deleted successfully');
     }
 
     /**

@@ -56,9 +56,8 @@ class StudentDao implements StudentDaoInterface
             $student->deleted_at = Carbon::now()->timestamp;
             $student->save();
             $student->delete();
-            return 'Deleted Successfully!';
+            return $student;
         }
-        return 'Student Not Found!';
     }
 
     /**

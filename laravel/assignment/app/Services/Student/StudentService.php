@@ -7,6 +7,8 @@ use App\Contracts\Services\Student\StudentServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StudentMail;
 
 /**
  * Service class for student.
@@ -29,13 +31,20 @@ class StudentService implements StudentServiceInterface
     }
 
     /**
-     * To save student
+     * To save student and send email
      * @param Request $request request with inputs
      * @return Object $student saved student
      */
     public function saveStudent(Request $request)
     {
-        return $this->studentDao->saveStudent($request);
+        $student = $this->studentDao->saveStudent($request);
+        $details = [
+            'name' => $student->name,
+            'email' => $student->email,
+            'message' => 'Your record has been saved.'
+        ];
+        Mail::to($student->email)->send(new StudentMail($details));
+        return $student;
     }
 
     /**
@@ -48,13 +57,22 @@ class StudentService implements StudentServiceInterface
     }
 
     /**
-     * To delete student by id
+     * To delete student by id and send email
      * @param string $id student id
      * @return string $message message success or not
      */
     public function deleteStudentById($id)
     {
-        return $this->studentDao->deleteStudentById($id);
+        $student = $this->studentDao->deleteStudentById($id);
+        if ($student) {
+            $details = [
+                'name' => $student->name,
+                'email' => $student->email,
+                'message' => 'Your record has been deleted.'
+            ];
+            Mail::to($student->email)->send(new StudentMail($details));
+        }
+        return $student;
     }
 
     /**
