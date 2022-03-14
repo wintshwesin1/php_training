@@ -28,6 +28,8 @@ class StudentMail extends Mailable
      */
     public function build()
     {
-        return $this->from('alibaba2252022@gmail.com')->subject('New Customer Equiry')->view('students.email-template')->with('data', $this->data);
+        $email = env('MAIL_FROM_ADDRESS');
+        return $this->from($email)->subject($this->data['subject'])
+                    ->view('students.email-template')->with('data', $this->data);
     }
 }

@@ -41,7 +41,8 @@ class StudentService implements StudentServiceInterface
         $details = [
             'name' => $student->name,
             'email' => $student->email,
-            'message' => 'Your record has been saved.'
+            'message' => 'Your record has been saved.',
+            'subject' => 'Create Student'
         ];
         Mail::to($student->email)->send(new StudentMail($details));
         return $student;
@@ -68,7 +69,8 @@ class StudentService implements StudentServiceInterface
             $details = [
                 'name' => $student->name,
                 'email' => $student->email,
-                'message' => 'Your record has been deleted.'
+                'message' => 'Your record has been deleted.',
+                'subject' => 'Delete Student'
             ];
             Mail::to($student->email)->send(new StudentMail($details));
         }
